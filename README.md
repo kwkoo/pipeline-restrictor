@@ -80,6 +80,10 @@ listens on port 8443. The reason for this is because the kube API server had
 problems connecting (Jan 2020) to non-port 443 services even when a `port`
 parameter was used in the Validating Admission config (back before the webhook
 server was set to an API server extension).
+* I had to use the dynamic interface in the k8s client instead of the client
+at <https://github.com/tektoncd/pipeline> because of differences in the kube
+api package between the tekton pipeline package and the
+[generic-admission-server](https://github.com/openshift/generic-admission-server).
 
 ## Troubleshooting
 
