@@ -1,0 +1,10 @@
+module github.com/kwkoo/pipelinerestrictor
+
+go 1.14
+
+require (
+	github.com/openshift/generic-admission-server v1.14.1-0.20200514123932-ccc9079d8bdb
+	k8s.io/api v0.18.2
+	k8s.io/apimachinery v0.18.2
+	k8s.io/client-go v0.18.2
+)

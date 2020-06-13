@@ -1,0 +1,14 @@
+apiVersion: apiregistration.k8s.io/v1beta1
+kind: APIService
+metadata:
+  annotations:
+    service.beta.openshift.io/inject-cabundle: "true"
+  name: GVR_VERSION.GVR_GROUP
+spec:
+  group: GVR_GROUP
+  groupPriorityMinimum: 1000
+  versionPriority: 15
+  service:
+    name: SERVICE_NAME
+    namespace: PROJECT
+  version: GVR_VERSION

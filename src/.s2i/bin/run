@@ -1,0 +1,9 @@
+#!/bin/bash
+
+exec /opt/app-root/gobinary \
+  --tls-cert-file /certificates/tls.crt \
+  --tls-private-key-file /certificates/tls.key \
+  --secure-port 8443 \
+  --logtostderr
+
+# To enable verbose logging, add this to the arguments:  --v 9
