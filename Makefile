@@ -1,5 +1,6 @@
 PREFIX=github.com/kwkoo
 PACKAGE=pipelinerestrictor
+IMAGE_VERSION=0.1
 PROJECT=$(PACKAGE)
 APP_NAME=$(PACKAGE)
 SERVICE_NAME=$(PACKAGE)
@@ -181,3 +182,11 @@ cleanopenshift: clean
 
 logs:
 	@oc logs -n $(PROJECT) -f `oc get po -n $(PROJECT) | grep $(APP_NAME) | grep Running | grep -v -- -build | grep -v -- -deploy | awk '{ print $$1 }'`
+
+dockerimage:
+	docker build -t $(PREFIX)/$(PACKAGE):$(IMAGE_VERSION) .
+	docker tag $(PREFIX)/$(PACKAGE):$(IMAGE_VERSION) quay.io/kwkoo/$(PACKAGE):$(IMAGE_VERSION)
+	docker tag quay.io/kwkoo/$(PACKAGE):$(IMAGE_VERSION) quay.io/kwkoo/$(PACKAGE):latest
+	docker login quay.io
+	docker push quay.io/kwkoo/$(PACKAGE):$(IMAGE_VERSION)
+	docker push quay.io/kwkoo/$(PACKAGE):latest
