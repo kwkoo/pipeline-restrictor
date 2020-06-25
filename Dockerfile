@@ -17,5 +17,9 @@ LABEL maintainer="kin.wai.koo@gmail.com"
 LABEL builder=false
 COPY --from=builder /go/bin/${PACKAGE} /usr/bin/${PACKAGE}
 
+RUN chmod 755 /usr/bin/${PACKAGE}
+
+USER 1001
+
 ENTRYPOINT ["/usr/bin/pipelinerestrictor"]
 CMD ["--tls-cert-file", "/certificates/tls.crt", "--tls-private-key-file", "/certificates/tls.key", "--secure-port", "8443", "--logtostderr"]
